@@ -1,18 +1,19 @@
+const cacheName = 'cozy-farm-v1';
+const filesToCache = [
+  './',
+  'index.html',
+  'app.js',
+  'sw.js',
+  'manifest.json',
+  'icon-512.png',
+  'bg.jpg',
+  'bgm.mp3',
+  'VT323-Regular.ttf'
+];
+
 self.addEventListener('install', e => {
   e.waitUntil(
-    caches.open('cozy-farm').then(cache => 
-      cache.addAll([
-        './',
-        'index.html',
-      'app.js',
-      'manifest.json',
-      'sw.js',
-      'icon-512.png',
-      'bg.jpg',
-      'bgm.mp3',
-      'VT323-Regular.ttf'
-      ])
-    )
+    caches.open(cacheName).then(cache => cache.addAll(filesToCache))
   );
 });
 
