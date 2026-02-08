@@ -33,7 +33,7 @@ cozy-farm/
 
 ### 1️⃣ GitHub Pages / Web
 
-1. Open the repo link: `https://yourusername.github.io/cozy-farm/`  
+1. Open the repo link: `https://De3dweight.github.io/cozy-farm/`  
 2. On Chrome (Android/Desktop) → you can **Install the app** from the menu.  
 3. Works **offline** after first load (Service Worker caches everything).  
 
