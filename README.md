@@ -18,13 +18,21 @@ Works **offline**, installable on **Android**, partially on **iOS**, with backgr
 
 ## Folder Structure
 cozy-farm/
+
 ├── index.html ← main HTML
+
 ├── app.js ← calculator logic
+
 ├── sw.js ← service worker
+
 ├── manifest.json ← PWA manifest
+
 ├── icon-512.png ← app icon
+
 ├── bg.jpg ← background image
+
 ├── bgm.mp3 ← optional background music
+
 ├── VT323-Regular.ttf ← font file
 
 > Make sure all files are in the same folder. No subfolders needed.
