@@ -1,24 +1,37 @@
-const cacheName = 'cozy-farm-v1';
-const filesToCache = [
-  './',
-  'index.html',
-  'app.js',
-  'sw.js',
-  'manifest.json',
-  'icon-512.png',
-  'bg.jpg',
-  'bgm.mp3',
-  'VT323-Regular.ttf'
+const CACHE_NAME="cozy-farm-v3";
+const ASSETS=[
+  "./",
+  "./index.html",
+  "./app.js",
+  "./manifest.json",
+  "./icons/icon-192.png",
+  "./icons/icon-512.png",
+  "./bg.jpg",
+  "./wood.jpg",
+  "./bgm.mp3",
+  "./fonts/VT323-Regular.ttf",
+  "./fonts/PressStart2P-Regular.ttf"
 ];
 
-self.addEventListener('install', e => {
-  e.waitUntil(
-    caches.open(cacheName).then(cache => cache.addAll(filesToCache))
+self.addEventListener("install", event=>{
+  self.skipWaiting();
+  event.waitUntil(
+    caches.open(CACHE_NAME)
+    .then(cache=>Promise.allSettled(ASSETS.map(asset=>cache.add(asset))))
   );
 });
 
-self.addEventListener('fetch', e => {
-  e.respondWith(
-    caches.match(e.request).then(r => r || fetch(e.request))
+self.addEventListener("activate", event=>{
+  event.waitUntil(
+    caches.keys().then(keys=>Promise.all(
+      keys.map(key=>key!==CACHE_NAME && caches.delete(key))
+    ))
+  );
+  self.clients.claim();
+});
+
+self.addEventListener("fetch", event=>{
+  event.respondWith(
+    caches.match(event.request).then(res=>res||fetch(event.request))
   );
 });
